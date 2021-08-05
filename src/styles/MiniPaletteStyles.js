@@ -12,7 +12,7 @@ export default {
     },
     colors: {
         backgroundColor: "#dae1e4",
-        height: '100px',
+        height: '150px',
         width: '100%',
         borderRadius: '5px',
         overflow: 'hidden'
@@ -37,6 +37,6 @@ export default {
         display: 'inline-block',
         margin: '0 auto',
         position: 'relative',
-        marginBottom: '-4px'
+        marginBottom: '-4px',
     }
 }
