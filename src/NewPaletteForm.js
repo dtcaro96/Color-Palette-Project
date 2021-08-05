@@ -12,8 +12,9 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Button from "@material-ui/core/Button";
 import { ChromePicker } from "react-color";
-import DraggableColorBox from "./DraggableColorBox";
+import DraggableColorList from './DraggableColorList';
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
+import { arrayMove } from "react-sortable-hoc";
 
 const drawerWidth = 400;
 
@@ -89,6 +90,7 @@ class NewPaletteForm extends Component {
         this.addNewColor = this.addNewColor.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
     componentDidMount () {
         ValidatorForm.addValidationRule('isColorNameUnique', value =>
@@ -145,6 +147,11 @@ class NewPaletteForm extends Component {
             colors: this.state.colors.filter(color => color.name !== colorName)
         })
     }
+    onSortEnd = ({ oldIndex, newIndex }) => {
+        this.setState(({ colors }) => ({
+            colors: arrayMove(colors, oldIndex, newIndex),
+        }));
+    };
 
     render () {
         const { classes } = this.props;
@@ -253,15 +260,13 @@ class NewPaletteForm extends Component {
                     })}
                 >
                     <div className={classes.drawerHeader} />
+                    <DraggableColorList
+                        axis='xy'
+                        colors={this.state.colors}
+                        handleDelete={this.handleDelete}
+                        onSortEnd={this.onSortEnd}
+                    />
 
-                    {this.state.colors.map(color => (
-                        <DraggableColorBox
-                            key={color.name}
-                            color={color.color}
-                            name={color.name}
-                            handleDelete={() => this.handleDelete(color.name)}
-                        />
-                    ))}
                 </main>
             </div >
         );
