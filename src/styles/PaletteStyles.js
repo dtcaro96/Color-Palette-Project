@@ -1,4 +1,4 @@
-export default {
+const styles = {
     palette: {
         height: '100vh',
         display: 'flex',
@@ -17,7 +17,6 @@ export default {
         marginBottom: '-3.9px',
         opacity: '1',
         backgroundColor: 'black',
-        position: 'relative',
         '& a': {
             color: 'white',
             width: '100px',
@@ -47,3 +46,5 @@ export default {
         fontWeight: 'bold'
     }
 }
+
+export default styles;
