@@ -54,7 +54,8 @@ const styles = {
         padding: '10px',
         zIndex: '10',
         opacity: '0',
-        transition: 'all 0.3 s ease-in-out'
+        transition: 'all 0.3 s ease-in-out',
+        boxSizing: 'initial'
     }
 }
 
